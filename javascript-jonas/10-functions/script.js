@@ -250,5 +250,5 @@ ${this.options.join("\n")}`);
 
 document.querySelector(".poll").addEventListener
 ("click", registerNewAnswer.bind(poll));
-
+//chick
 
