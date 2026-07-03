@@ -83,6 +83,7 @@ console.log(`-------------------------------------------------------------------
 ----------------------------------------------------------------------------`);
 
 //---------------------------------------------------------------------------------------------------------------------------------
+//function returning function
 
 const greet = function (greeting) {
   return function (name) {
@@ -103,6 +104,90 @@ gtreeterHeyArr("Doha");
 gtreeterHeyArr("jonas");
 console.log(`----------------------------------------------------------------------------
 ----------------------------------------------------------------------------`);
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//call and apply method
+
+const lufthansa = {
+  airline: "Lufthansa",
+  iatacode: "LH",
+  booking: [],
+  book(flightNum, name) {
+    console.log(`${name} booked a seat on ${this.airline} 
+    fligt ${this.iatacode} ${flightNum}`);
+
+    this.booking.push({ flight: `${this.iatacode}${flightNum}`, name });
+  },
+};
+
+const eurowings = {
+  airline: "Eurowings",
+  iatacode: "EW",
+  booking: [],
+};
+
+lufthansa.book(234, "doha ayman");
+lufthansa.book(846, "moaz ayman");
+
+console.log(lufthansa);
+
+const book = lufthansa.book;
+book.call(eurowings, 534, "jonas");
+book.apply(eurowings, [534, "jonas"]);
+console.log(eurowings);
+
+// This doesn't work because apply() expects arguments in an array.
+// book.apply(eurowings, 534, 'jonas');
+
+console.log(`----------------------------------------------------------------------------
+----------------------------------------------------------------------------`);
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//bind method
+
+const bookEW = book.bind(eurowings);
+const bookLE = book.bind(lufthansa);
+
+bookEW(4354, "moon");
+bookLE(63, "fly");
+
+const bookEW34 = book.bind(eurowings, 34);
+bookEW34("mo");
+
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+};
+
+//lufthansa.buyPlane();
+
+document.querySelector(".buy").addEventListener("click", lufthansa.buyPlane);
+//The this keyword in an event listener refers to the element
+
+document.querySelector(".buy").addEventListener("click", lufthansa.buyPlane.bind(lufthansa));
+
+//partial application
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+
+const addVAT = addTax.bind(null, 0.23);
+console.log(addVAT(100));
+
+const TT = function (rate) {
+  return function (value) {
+    return value + value * rate;
+  };
+};
+
+const tt = TT(0.23);
+console.log(tt(100));
+
+console.log(`----------------------------------------------------------------------------
+----------------------------------------------------------------------------`);
+
+//---------------------------------------------------------------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------------------------------------------------------------
 // Coding Challenge #1
@@ -141,3 +226,29 @@ BONUS TEST DATA 2: [1, 5, 3, 9, 6, 1]
 
 GOOD LUCK 😀
 */
+const poll = {
+  question: "What is your favourite programming language?",
+  options: ["0: JavaScript", "1: Python", "2: Rust", "3: C++"],
+  // This generates [0, 0, 0, 0]. More in the next section 😃
+  answers: new Array(4).fill(0),
+  
+  displayResults(type ='')
+  {console.log(type , ...this.answers);
+  }
+};
+
+const registerNewAnswer= function () {
+  let answer = prompt(`${this.question} 
+${this.options.join("\n")}`);
+
+  if (answer >= 0 && answer <= 3) {
+    this.answers[answer]++;
+  }
+  
+  this.displayResults('the results is ');
+};
+
+document.querySelector(".poll").addEventListener
+("click", registerNewAnswer.bind(poll));
+
+
