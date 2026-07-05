@@ -250,5 +250,81 @@ ${this.options.join("\n")}`);
 
 document.querySelector(".poll").addEventListener
 ("click", registerNewAnswer.bind(poll));
-//chick
 
+console.log(`----------------------------------------------------------------------------
+----------------------------------------------------------------------------`);
+
+//---------------------------------------------------------------------------------------------------------------------------------
+
+// Immediately Invoked Function Expression
+// IIFE: A function that executes immediately and runs only once.
+(function(){console.log('this will never run again')})();
+
+const fullName = (function(firstName , lastName){
+  return `${firstName} ${lastName}` ;
+})('doha','ayman');
+
+console.log(fullName);
+
+(()=>console.log('this will never run again'))();
+
+console.log(`----------------------------------------------------------------------------
+----------------------------------------------------------------------------`);
+
+//---------------------------------------------------------------------------------------------------------------------------------
+
+// Closures
+// Closures allow an inner function to retain access to its parent function's variables,
+// keeping them alive in the Heap memory as long as the program needs them.
+
+const secureBooking = function() {
+  let passengerConunt = 0;
+
+  return function(){
+    passengerConunt++;
+    console.log(`${passengerConunt} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+booker();
+booker();
+
+//Example 1
+let f;
+
+const g =function (){
+  const a =23;
+  f =function(){console.log(a*2);};
+}
+
+const h =function (){
+  const b =235;
+  f =function(){console.log(b*2);};
+}
+
+g();
+f();
+
+h();
+f();
+
+//Example 2
+const boardpassengers = function(n , wait)
+{
+  const perGroup =n/3;
+
+  setTimeout(function(){
+     console.log(`we are now boarding all ${n} passengers`);
+     console.log(`there are 3 groups , each with${perGroup} passengers`);} 
+     , wait *1000)
+
+     console.log(`will start boarding in ${wait} seconds`);
+}
+
+boardpassengers(180,5);
+
+
+
+ 
