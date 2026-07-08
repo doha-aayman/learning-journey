@@ -156,14 +156,20 @@ console.log(movementsDescriptions);
 
 // //-------------------------------------------------------------------------------------------------
 
-//filter
-// Use map() to return a new modified array
+// filter
+
 const deposits = movements.filter(mov => mov>0)
 
 console.log(deposits);
 
+// //-------------------------------------------------------------------------------------------------
 
+// reduce
 
+const max = movements.reduce((acc , mov) => {
+  if(acc>mov)returnacc;
+  else returnmov;
+} , movements[0]);
 
 
 
