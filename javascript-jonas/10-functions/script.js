@@ -49,12 +49,12 @@ const newpassport = function (person) {
   person.passport = Math.trunc(Math.random() * 100000000000);
 };
 
-//checkIn(flight ,doha);
+// checkIn(flight ,doha);
 console.log(flight);
 console.log(doha);
 
 newpassport(doha);
-//checkIn(flight , doha);
+// checkIn(flight , doha);
 
 console.log(`----------------------------------------------------------------------------
 ----------------------------------------------------------------------------`);
@@ -102,6 +102,7 @@ const greetArr = (greeting) => (name) => console.log(`${greeting} ${name}`);
 const gtreeterHeyArr = greetArr("hey");
 gtreeterHeyArr("Doha");
 gtreeterHeyArr("jonas");
+greetArr("hi")("moaz");
 console.log(`----------------------------------------------------------------------------
 ----------------------------------------------------------------------------`);
 
