@@ -1,6 +1,6 @@
 "use strict";
 
-//Default Parameters
+//1 Default Parameters
 const bookings = [];
 
 const createBooking = function (
@@ -26,7 +26,7 @@ console.log(`-------------------------------------------------------------------
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-// Argument value VS reference
+//2 Argument value VS reference
 // JavaScript doesn't have a ref parameter
 
 const flight = "LH234";
@@ -49,7 +49,7 @@ const newpassport = function (person) {
   person.passport = Math.trunc(Math.random() * 100000000000);
 };
 
-// checkIn(flight ,doha);
+//3 checkIn(flight ,doha);
 console.log(flight);
 console.log(doha);
 
@@ -61,7 +61,7 @@ console.log(`-------------------------------------------------------------------
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-//Higher order function
+//3 Higher order function
 const oneWord = function (str) {
   return str.replace(/ /g, "").toLowerCase();
 };
@@ -83,7 +83,7 @@ console.log(`-------------------------------------------------------------------
 ----------------------------------------------------------------------------`);
 
 //---------------------------------------------------------------------------------------------------------------------------------
-//function returning function
+//4 function returning function
 
 const greet = function (greeting) {
   return function (name) {
@@ -107,7 +107,7 @@ console.log(`-------------------------------------------------------------------
 ----------------------------------------------------------------------------`);
 
 //---------------------------------------------------------------------------------------------------------------------------------
-//call and apply method
+//5 call and apply method
 
 const lufthansa = {
   airline: "Lufthansa",
@@ -130,12 +130,12 @@ const eurowings = {
 lufthansa.book(234, "doha ayman");
 lufthansa.book(846, "moaz ayman");
 
-console.log(lufthansa);
+console.log('print lufthansa Object : ', lufthansa);
 
 const book = lufthansa.book;
 book.call(eurowings, 534, "jonas");
 book.apply(eurowings, [534, "jonas"]);
-console.log(eurowings);
+console.log('print eurowings Object : ',eurowings);
 
 // This doesn't work because apply() expects arguments in an array.
 // book.apply(eurowings, 534, 'jonas');
@@ -144,7 +144,7 @@ console.log(`-------------------------------------------------------------------
 ----------------------------------------------------------------------------`);
 
 //---------------------------------------------------------------------------------------------------------------------------------
-//bind method
+//6 bind method
 
 const bookEW = book.bind(eurowings);
 const bookLE = book.bind(lufthansa);
